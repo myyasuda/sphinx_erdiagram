@@ -1,0 +1,32 @@
+entities:
+ 顧客:
+   columns:
+     - 顧客番号:       { label: string, pk: true, notnull: true }
+     - 顧客名:         { label: string, notnull: true }
+     - 郵便番号:       { label: string }
+     - 住所:           { label: string }
+     - 電話番号:       { label: string }
+     - メールアドレス: { label: string }
+     - ログインID:     { label: string, notnull: true, notnull: true  }
+     - パスワード:     { label: string, notnull: true }
+ 注文:
+   columns:
+     - 注文番号:       { label: string, pk: true, notnull: true  }
+     - 注文日:         { label: string }
+     - 顧客番号:       { label: string, fk: true }
+     - 送料:           { label: string }
+ 注文明細:
+   columns:
+     - 注文番号:       { label: string, pk: true, notnull: true  }
+     - 商品番号:       { label: string, fk: true }
+     - 注文数量:       { label: integer }
+ 商品:
+   columns:
+     - 商品番号:       { label: string, pk: true, notnull: true  }
+     - 商品名:         { label: string }
+     - 価格:           { label: string }
+
+relations:
+ - 顧客 1--* 注文
+ - 注文明細 +--1 注文
+ - 注文明細 *--1 商品
