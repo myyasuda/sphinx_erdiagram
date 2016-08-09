@@ -55,7 +55,7 @@ Contents
    :numbered:
    :glob:
 
-   gettingstarted
+   settings
    writingstyle
 
 

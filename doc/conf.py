@@ -11,7 +11,6 @@ extensions = ['myasuda.sphinx.erdiagram']
 
 graphviz_output_format = "svg"
 
-templates_path = ['_templates']
 source_suffix = '.rst'
 
 master_doc = 'index'
@@ -32,7 +31,11 @@ pygments_style = 'sphinx'
 html_theme = 'sphinxbootstrap4theme'
 html_theme_path = [sphinxbootstrap4theme.get_path()]
 html_theme_options = {
-    'sidebar_right': False
+    'sidebar_right': False,
+    'navbar_pages_title': 'Menu',
+    'navbar_links': [
+        ('GitHub', 'https://github.com/myyasuda/sphinx_erdiagram', True)
+    ]
 }
 
 #html_static_path = ['_static']
