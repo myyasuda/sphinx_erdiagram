@@ -1,5 +1,6 @@
 from docutils import nodes
 from docutils.parsers.rst import directives
+from docutils.parsers.rst.directives.admonitions import BaseAdmonition
 import os
 import re
 import codecs
@@ -10,8 +11,8 @@ import sphinx
 from sphinx.ext.graphviz import render_dot_html, render_dot_latex, \
     render_dot_texinfo, figure_wrapper
 from sphinx.pycode import ModuleAnalyzer
-from sphinx.util import force_decode
-from sphinx.util.compat import Directive
+from sphinx.util import force_decode, compat
+compat.make_admonition = BaseAdmonition
 
 re_relation = re.compile('^\s*(.*)\s(\*|\+|\?|[0-9])?(->|<-|--|<->)(\*|\+|\?|[0-9])?\s(.*)$')
 
@@ -24,7 +25,7 @@ class er_diagram(nodes.General, nodes.Element):
     """
     pass
 
-class ErDiagram(Directive):
+class ErDiagram(BaseAdmonition):
     has_content = True
     required_arguments = 0
     optional_arguments = 1
