@@ -313,6 +313,14 @@ def html_visit_er_diagram(self, node):
                     alt='ER図')
     raise nodes.SkipNode
 
+
+def latex_visit_er_diagram(self, node):
+    digraph = Digraph(node)
+    dotcode = digraph.generate_dot()
+    render_dot_latex(self, node, dotcode, {}, 'ERDiagram')
+    raise nodes.SkipNode
+
+
 def skip(self, node):
     raise nodes.SkipNode
 
@@ -320,7 +328,7 @@ def setup(app):
     app.setup_extension('sphinx.ext.graphviz')
     app.add_node(
         er_diagram,
-        latex=(skip, None),
+        latex=(latex_visit_er_diagram, None),
         html=(html_visit_er_diagram, None),
         text=(skip, None),
         man=(skip, None),
